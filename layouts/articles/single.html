@@ -58,9 +58,19 @@
       {{ end }}
 
       {{ .Content }}
+
+      {{ with .Params.tags }}
+      <div class="post-tags">
+        <strong>Tags: </strong>
+        <div class="tag-list">
+          {{ range . }}
+            <li><a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a></li>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
     </article>
   </div>
-
 </div>
 
 {{ end }}
