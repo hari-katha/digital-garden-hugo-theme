@@ -2,3 +2,30 @@
 <script type="text/javascript" src="{{ $built.RelPermalink }}" defer></script>
 
 {{ template "_internal/google_analytics.html" . }}
+
+<!-- Load Fuse.js first -->
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<!-- Then your custom search script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/index.json")
+      .then(res => res.json())
+      .then(data => {
+        const fuse = new Fuse(data, {
+          keys: ["title", "summary", "content"],
+          threshold: 0.3
+        });
+
+        const searchBox = document.getElementById("search-box");
+        const resultsList = document.getElementById("search-results");
+
+        searchBox.addEventListener("input", function () {
+          const results = fuse.search(this.value);
+          resultsList.innerHTML = results.map(result =>
+            `<li><a href="${result.item.permalink}">${result.item.title}</a></li>`
+          ).join("");
+        });
+      });
+  });
+</script>
