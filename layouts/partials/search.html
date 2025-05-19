@@ -24,8 +24,19 @@
   }
 </script> -->
 
-<input id="search-box" type="text" placeholder="Search..." />
+<!-- Search Box -->
+<label style="display: block; margin-bottom: 1rem;">
+  <input
+    id="search-box"
+    type="text"
+    name="search"
+    placeholder="Search..."
+    required
+    style="width: 100%; padding: 0.75rem; margin-top: 0.25rem; border: 1px solid #ccc; border-radius: 6px; color: #000;"
+  >
+</label>
 <ul id="search-results"></ul>
+<!-- Search Result -->
 <script>
 fetch("/index.json")
   .then(res => res.json())
