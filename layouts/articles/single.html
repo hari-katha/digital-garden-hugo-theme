@@ -4,6 +4,8 @@
 {{ $date := .Date.Format "January 2, 2006" }}
 {{ $lastmod := .Lastmod.Format "January 2, 2006" }}
 
+<link rel="stylesheet" href="{{ "css/heading-numbering.css" | relURL }}">
+
 <div class="flex flex-1 h-screen relative w-full min-w-0">
   <section
     class="will-change-transform transform transition-transform -translate-x-[200%] absolute top-0 left-0 lg:relative
@@ -37,7 +39,9 @@
   </section>
 
   <div class="overflow-y-auto h-screen w-full">
-    <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+    <!-- <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto"> -->
+    <!-- Adding numbering class -->
+    <article class="post-content px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
 
       {{ $title := .Params.title }}
       <h1 class="!mb-2">{{ $title }}</h1>
